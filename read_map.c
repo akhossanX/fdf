@@ -6,7 +6,7 @@
 /*   By: akhossan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 08:33:07 by akhossan          #+#    #+#             */
-/*   Updated: 2019/07/15 11:11:51 by akhossan         ###   ########.fr       */
+/*   Updated: 2019/07/15 14:41:35 by akhossan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_pixel	**to_pixel(int fd, int width, int heigth)
 	int			i;
 	int			ret;
 
-	if (!(pixels = (t_pixel**)malloc(sizeof(t_pixel*) * heigth)))
+	if (!(pixels = (t_pixel**)malloc(sizeof(t_pixel*) * (heigth + 1))))
 		return (NULL);
 	i = 0;
 	while ((ret = get_next_line(fd, &line)) > 0)
@@ -86,6 +86,7 @@ t_pixel	**to_pixel(int fd, int width, int heigth)
 		fill_pixels_row(pixels[i], i, width, split);
 		i++;
 	}
+	pixels[i] = NULL;
 	if (ret == -1)
 	{
 		del_pixels(pixels, heigth);
@@ -129,10 +130,11 @@ void	del_pixels(t_pixel **pixels, int size)
 	i = 0;
 	while (i < size)
 	{
-		printf("object %d freed\n", i + 1);
+		//printf("object %d freed\n", i + 1);
 		free(pixels[i++]);
-		printf("pixels pointer: %p\n", pixels);
+		//printf("pixels pointer: %p\n", pixels);
 	}
+	free(pixels[i]);
 	free(pixels);
 }
 
