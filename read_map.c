@@ -6,7 +6,7 @@
 /*   By: akhossan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 08:33:07 by akhossan          #+#    #+#             */
-/*   Updated: 2019/07/15 14:41:35 by akhossan         ###   ########.fr       */
+/*   Updated: 2019/07/16 12:17:05 by akhossan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,9 @@ void	fill_pixels_row(t_pixel *pix, int row, int width, char **str)
 {
 	int		i;
 	char	*pos;
+	int		scale;
 
+	scale = 10;
 	i = 0;
 	while (i < width)
 	{
@@ -115,8 +117,8 @@ void	fill_pixels_row(t_pixel *pix, int row, int width, char **str)
 			pix[i].color = ft_atoi_base(pos + 1, 16);
 		else
 			pix[i].color = 0xFFFFFF;
-		pix[i].x = i;
-		pix[i].y = row;
+		pix[i].x = i * scale;
+		pix[i].y = row * scale;
 		pix[i].z = ft_atoi(str[i]);
 		i++;
 	}

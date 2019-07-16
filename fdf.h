@@ -6,7 +6,7 @@
 /*   By: akhossan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 12:17:47 by akhossan          #+#    #+#             */
-/*   Updated: 2019/07/15 10:36:10 by akhossan         ###   ########.fr       */
+/*   Updated: 2019/07/15 17:22:34 by akhossan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FDF_H
 # include "./gnl/get_next_line.h"
 # include <fcntl.h>
+# include "minilibx_macos/mlx.h"
 # define DEBUG	ft_putendl("Oh Yeah..Here")
 
 #include <stdio.h>
