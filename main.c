@@ -6,7 +6,7 @@
 /*   By: akhossan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 16:41:22 by akhossan          #+#    #+#             */
-/*   Updated: 2019/07/18 22:19:32 by akhossan         ###   ########.fr       */
+/*   Updated: 2019/07/19 11:52:39 by akhossan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ t_mlx	*mlx_new(char *arg)
 			&mlx->endian);
 	mlx->pixs = read_file(arg, mlx->width, mlx->heigth);
 	if (!clone_pixels(mlx))
+	{
 		ft_puterror(2);
+	}
 	return (mlx);
 }
 
@@ -82,7 +84,7 @@ int		main(int ac, char **av)
 	mlx = mlx_new(av[1]);
 	draw_map(mlx);
 	//mlx_put_image_to_window(mlx->pan, mlx->win, mlx->img, 0, 0);
-	//mlx_loop(mlx->pan);
+	mlx_loop(mlx->pan);
 	del_pixels(mlx->pixs, mlx->heigth);
 	del_pixels(mlx->proj, mlx->heigth);
 	return (0);

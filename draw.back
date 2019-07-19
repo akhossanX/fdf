@@ -1,0 +1,27 @@
+
+void	draw_line(t_mlx *mlx, t_pixel p1, t_pixel p2)
+{
+	t_param	param;
+
+	printf("(%d, %d) --> (%d, %d)\n", p1.x, p1.y, p2.x, p2.y);
+	init_params(param, p1, p2);
+	while (1)
+	{
+		mlx_pixel_put(mlx->pan, mlx->win, param.x0, param.y0, 0xFFFFFF);
+		param.error = 2 * param.d;
+		if (param.error >= param.dy)
+		{
+			if (param.x0 == param.x1)
+				break ;
+			param.d += param.dy;
+			param.x0 += param.sx;
+		}
+		if (param.error <= param.dx)
+		{
+			if (param.y0 == param.y1)
+				break ;
+			param.d += param.dx;
+			param.y0 += param.sy;
+		}
+	}
+}

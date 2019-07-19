@@ -6,7 +6,7 @@
 /*   By: akhossan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 12:17:47 by akhossan          #+#    #+#             */
-/*   Updated: 2019/07/18 21:42:52 by akhossan         ###   ########.fr       */
+/*   Updated: 2019/07/19 11:42:09 by akhossan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ typedef struct		s_param
 	int				dy;
 	int				sx;
 	int				sy;
-	int				d;
-	int				error;
+	int				err;
+	int				err2;
 }					t_param;
 
 t_pixel			**read_file(char *fpath, int width, int heigth);
@@ -75,6 +75,7 @@ void			del_str_array(char **pixels);
 void			del_pixels(t_pixel **pixels, int size);
 void			fill_pixels_row(t_pixel *pix, int r, int width, char **s);
 void			disp(char **s);
+void			dis_pixels(t_mlx *mlx);
 
 
 int		clone_pixels(t_mlx *mlx);

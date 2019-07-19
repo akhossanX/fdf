@@ -6,7 +6,7 @@
 #    By: akhossan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/03 20:42:53 by akhossan          #+#    #+#              #
-#    Updated: 2019/07/18 22:24:45 by akhossan         ###   ########.fr        #
+#    Updated: 2019/07/19 11:16:29 by akhossan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ all: $(NAME)
 $(NAME):
 	@make re -C libft && make clean -C libft
 	#@printf "\033[91mLibft done\n"
-	@gcc $(CFALGS) draw.c read_map.c main.c $(GNL) $(LFT) $(LIBS) -o $(NAME)
+	@gcc $(CFALGS) dis_pixels.c draw.c read_map.c main.c $(GNL) $(LFT) $(LIBS) -o $(NAME)
 
 clean:
 	@make clean -C libft
