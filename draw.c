@@ -6,14 +6,11 @@
 /*   By: akhossan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 21:19:29 by akhossan          #+#    #+#             */
-/*   Updated: 2019/07/19 11:54:22 by akhossan         ###   ########.fr       */
+/*   Updated: 2019/07/19 22:53:48 by akhossan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#define XOFF	100
-#define YOFF	100
-
 
 void	init_params(t_param *param, t_pixel p1, t_pixel p2)
 {
@@ -26,18 +23,28 @@ void	init_params(t_param *param, t_pixel p1, t_pixel p2)
 	param->sx = p1.x < p2.x ? 1 : -1;
 	param->sy = p1.y < p2.y ? 1 : -1;
 	param->err = param->dx + param->dy;
+	param->col = p1.color;
 }
 
 
 void	draw_line(t_mlx *mlx, t_pixel p1, t_pixel p2)
 {
 	t_param	param;
+	int		x;
+	int		y;
 
 	init_params(&param, p1, p2);
-	printf("%d, %d\n", param.x0, param.y0);
 	while (1)
 	{
-		mlx_pixel_put(mlx->pan, mlx->win, param.x0 + XOFF, param.y0 + YOFF, 0xffffff);
+		param.col = get_color(&param, p1, p2);
+		//Here we must create a function that sets the pixels to image
+		x = (param.x0 + XOFF) * mlx->bpp / 8;
+		y = (param.y0 + YOFF) * mlx->size;
+		mlx->cols[y + x] = param.col;
+		mlx->cols[++y + x] = param.col >> 8;
+		mlx->cols[++y + x] = param.col >> 16;
+		mlx->cols[++y + x] = 0;
+		//mlx_pixel_put(mlx->pan, mlx->win, param.x0 + XOFF, param.y0 + YOFF, param.col);
 		param.err2 = 2 * param.err;
 		if (param.err2 >= param.dy)
 		{

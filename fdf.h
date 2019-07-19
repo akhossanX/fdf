@@ -6,7 +6,7 @@
 /*   By: akhossan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 12:17:47 by akhossan          #+#    #+#             */
-/*   Updated: 2019/07/19 11:42:09 by akhossan         ###   ########.fr       */
+/*   Updated: 2019/07/20 00:01:44 by akhossan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,12 @@
 # include <fcntl.h>
 # include "./minilibx_macos/mlx.h"
 # include <math.h>
-# define WIDTH	1280
-# define HEIGTH	720
+# define WIDTH	3000//1280
+# define HEIGTH	2500//720
+#define XOFF	500
+#define YOFF	500
+# define DEFAULT_SCALE	50
+#define Z_ZOOM	10
 # define TITLE	"FDF"
 
 #include <stdio.h>
@@ -40,7 +44,7 @@ typedef struct		s_mlx
 	void			*pan;
 	void			*win;
 	void			*img;
-	int				*cols;
+	char			*cols;
 	//Image parameters
 	int				size;
 	int				bpp;
@@ -50,6 +54,9 @@ typedef struct		s_mlx
 	t_pixel			**pixs;
 	//Camera options
 	int				zoom;
+	int				scale;
+	int				xoff;
+	int				yoff;
 	double			angle_x;
 	double			angle_y;
 }					t_mlx;
@@ -66,6 +73,7 @@ typedef struct		s_param
 	int				sy;
 	int				err;
 	int				err2;
+	int				col;
 }					t_param;
 
 t_pixel			**read_file(char *fpath, int width, int heigth);
@@ -78,10 +86,13 @@ void			disp(char **s);
 void			dis_pixels(t_mlx *mlx);
 
 
-int		clone_pixels(t_mlx *mlx);
+int		clone_pixels(t_mlx *mlx, int pjct);
 t_mlx	*mlx_new(char *arg);
 void	ft_puterror(int err);
 void	draw_line(t_mlx *mlx, t_pixel p1, t_pixel p2);
 void	draw_map(t_mlx *mlx);
+double	percent(int p1, int p2, int p);
+int		get_color(t_param *param, t_pixel p1, t_pixel p2);
+int		get_light(int c1, int c2, double percentage);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: akhossan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 08:33:07 by akhossan          #+#    #+#             */
-/*   Updated: 2019/07/19 10:58:45 by akhossan         ###   ########.fr       */
+/*   Updated: 2019/07/20 00:02:21 by akhossan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,7 @@ void	fill_pixels_row(t_pixel *pix, int row, int width, char **str)
 {
 	int		i;
 	char	*pos;
-	int		scale;
 
-	scale = 10;
 	i = 0;
 	while (i < width)
 	{
@@ -117,8 +115,8 @@ void	fill_pixels_row(t_pixel *pix, int row, int width, char **str)
 			pix[i].color = ft_atoi_base(pos + 1, 16);
 		else
 			pix[i].color = 0xFFFFFF;
-		pix[i].x = i * scale;
-		pix[i].y = row * scale;
+		pix[i].x = i * DEFAULT_SCALE;
+		pix[i].y = row * DEFAULT_SCALE;
 		pix[i].z = ft_atoi(str[i]);
 		i++;
 	}
@@ -131,11 +129,7 @@ void	del_pixels(t_pixel **pixels, int size)
 
 	i = 0;
 	while (i < size)
-	{
-		//printf("object %d freed\n", i + 1);
 		free(pixels[i++]);
-		//printf("pixels pointer: %p\n", pixels);
-	}
 	free(pixels[i]);
 	free(pixels);
 }

@@ -6,7 +6,7 @@
 #    By: akhossan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/03 20:42:53 by akhossan          #+#    #+#              #
-#    Updated: 2019/07/19 11:16:29 by akhossan         ###   ########.fr        #
+#    Updated: 2019/07/19 22:35:54 by akhossan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,12 +20,14 @@ CFLAGS	:=	-Werror -Wextra -Wall
 
 GNL		:=	gnl/get_next_line.c 
 
+SRC		:=	draw.c read_map.c main.c color.c dis_pixels.c
+
 all: $(NAME)
 
 $(NAME):
 	@make re -C libft && make clean -C libft
 	#@printf "\033[91mLibft done\n"
-	@gcc $(CFALGS) dis_pixels.c draw.c read_map.c main.c $(GNL) $(LFT) $(LIBS) -o $(NAME)
+	@gcc $(CFALGS) $(SRC) $(GNL) $(LFT) $(LIBS) -o $(NAME)
 
 clean:
 	@make clean -C libft
