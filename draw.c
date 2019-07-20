@@ -6,7 +6,7 @@
 /*   By: akhossan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 21:19:29 by akhossan          #+#    #+#             */
-/*   Updated: 2019/07/19 22:53:48 by akhossan         ###   ########.fr       */
+/*   Updated: 2019/07/20 16:34:52 by akhossan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ void	draw_line(t_mlx *mlx, t_pixel p1, t_pixel p2)
 	{
 		param.col = get_color(&param, p1, p2);
 		//Here we must create a function that sets the pixels to image
-		x = (param.x0 + XOFF) * mlx->bpp / 8;
-		y = (param.y0 + YOFF) * mlx->size;
+		x = (param.x0) * mlx->bpp / 8;
+		y = (param.y0) * mlx->size;
 		mlx->cols[y + x] = param.col;
 		mlx->cols[++y + x] = param.col >> 8;
 		mlx->cols[++y + x] = param.col >> 16;
 		mlx->cols[++y + x] = 0;
-		//mlx_pixel_put(mlx->pan, mlx->win, param.x0 + XOFF, param.y0 + YOFF, param.col);
+		//mlx_pixel_put(mlx->pan, mlx->win, param.x0, param.y0, param.col);
 		param.err2 = 2 * param.err;
 		if (param.err2 >= param.dy)
 		{
