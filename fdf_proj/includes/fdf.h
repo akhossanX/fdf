@@ -6,7 +6,7 @@
 /*   By: yoouali <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 07:07:31 by yoouali           #+#    #+#             */
-/*   Updated: 2019/07/24 23:27:21 by yoouali          ###   ########.fr       */
+/*   Updated: 2019/07/27 22:27:19 by akhossan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,13 @@ typedef	struct	s_render
 
 void			ft_puterror(int err, t_mlx *mlx);
 int				get_dim(char *file, t_mlx *mlx);
-t_pixel			*fill_pixels_row(int i, int width, char **split, char *line);
+t_pixel			*fill_pixels_row(int i, int width, char **split);
 void			del_pixel(t_pixel **pixel);
 void			del_split(char **split);
-t_pixel			**to_pixel_leak(char **split, t_pixel **pix, int r, char *line);
+t_pixel			**to_pixel_leak(char **split, t_pixel **pix, char *line);
 t_pixel			**to_pixel(int fd, int widt, int heigth);
 t_pixel			**read_file(char *file, int width, int heigth);
 t_pixel			**clone_pixs(t_mlx *mlx);
-t_pixel			**clone_pixs_leak(t_mlx *mlx, int r);
 void			get_scale(t_mlx *mlx);
 void			get_proj(t_mlx *mlx);
 void			paral(t_mlx *mlx);
@@ -102,5 +101,6 @@ void			destroy_all(t_mlx *mlx, int err);
 void			draw_usage(t_mlx *mlx);
 void			draw_zoom_offset_info(t_mlx *mlx);
 void			z_up_down(t_mlx *mlx, int key);
+void			toogle_proj(t_mlx *mlx, int key);
 
 #endif

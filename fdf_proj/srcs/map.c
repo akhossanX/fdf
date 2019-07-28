@@ -6,7 +6,7 @@
 /*   By: yoouali <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 07:11:34 by yoouali           #+#    #+#             */
-/*   Updated: 2019/07/27 14:29:18 by akhossan         ###   ########.fr       */
+/*   Updated: 2019/07/27 22:35:05 by akhossan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_pixel		**clone_pixs(t_mlx *mlx)
 	while (i < mlx->heigth)
 	{
 		if (!(mlx->proj[i] = (t_pixel*)malloc(sizeof(t_pixel) * mlx->width)))
-			return (clone_pixs_leak(mlx, i));
+			return (NULL);
 		i++;
 	}
 	mlx->proj[i] = NULL;
@@ -81,4 +81,16 @@ void		get_scale(t_mlx *mlx)
 		scaley++;
 	scale = (scalex < scaley ? scalex : scaley);
 	up_scale(mlx, scale);
+}
+
+void		toogle_proj(t_mlx *mlx, int key)
+{
+	reset_image(mlx);
+	if (key == 35)
+		mlx->projn = 2;
+	if (key == 34)
+		mlx->projn = 1;
+	get_proj(mlx);
+	mlx->xm = 0;
+	mlx->ym = 0;
 }

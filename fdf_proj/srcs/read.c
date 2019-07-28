@@ -6,7 +6,7 @@
 /*   By: yoouali <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 07:30:06 by yoouali           #+#    #+#             */
-/*   Updated: 2019/07/24 23:14:32 by yoouali          ###   ########.fr       */
+/*   Updated: 2019/07/27 21:51:53 by yoouali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,31 +67,25 @@ t_pixel	**to_pixel(int fd, int width, int heigth)
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{
 		if (!(split = ft_strsplitset(line, " \t")) ||\
-				!(pixels[i] = fill_pixels_row(i, width, split, line)))
-			return (to_pixel_leak(split, pixels, i, line));
+				!(pixels[i] = fill_pixels_row(i, width, split)))
+			return (to_pixel_leak(split, pixels, line));
 		free(line);
 		i++;
 	}
 	pixels[i] = NULL;
 	if (ret == -1)
-	{
-		del_pixel(pixels);
 		return (NULL);
-	}
 	return (pixels);
 }
 
-t_pixel	*fill_pixels_row(int row, int width, char **split, char *line)
+t_pixel	*fill_pixels_row(int row, int width, char **split)
 {
 	t_pixel	*pix;
 	int		i;
 	char	*pos;
 
 	if (!(pix = (t_pixel *)malloc(sizeof(t_pixel) * width)))
-	{
-		free(line);
 		return (NULL);
-	}
 	i = 0;
 	while (split[i])
 	{
